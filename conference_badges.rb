@@ -15,8 +15,20 @@ def batch_badge_creator(attendees)
 end
 
 def assign_rooms(attendees)
-  attendees.each do |room|
-  puts "Hello #{name}! You'll be assigned to room #{room}!"
-  counter += 1
+  room = attendees.collect {|name|"Hello #{name}! You'll be assigned to room #{attendees.find_index(name) + 1}!"}
+  return room  
 end
+
+def printer(attendees)
+  message_array = batch_badge_creator(attendees)
+  room = assign_rooms(attendees)
+
+  count = 0
+  while count < (attendees.length)
+    puts message_array[count]
+    puts room[count]
+    count += 1
+  end
 end
+
+printer(array)
